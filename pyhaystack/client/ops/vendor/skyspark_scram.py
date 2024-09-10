@@ -147,7 +147,8 @@ class SkysparkScramAuthenticateOperation(state.HaystackOperation):
             if e.status != 401 and e.status != 303:
                 raise
             try:
-                server_response = e.headers["WWW-Authenticate"]
+                # server_response = e.headers["WWW-Authenticate"]
+                server_response = e.headers["www-authenticate"]
                 header_response = server_response.split(",")
                 algorithm = scram.regex_after_equal(header_response[1])
                 algorithm_name = algorithm.replace("-", "").lower()
